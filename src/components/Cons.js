@@ -15,8 +15,10 @@ class Cons extends Component {
         this.props.updateCons(id, e.target.value);
     };
 
-    enterHandle = () => {
-        this.props.updateActiveCons(null);
+    enterHandle = (e) => {
+        if(e.keyCode === 13){
+            this.props.updateActiveCons(null);
+        }
     };
 
     render() {
@@ -32,7 +34,7 @@ class Cons extends Component {
                                     <div className="item" key={item.id} onClick={() => this.clickHandle(item.id)}>
                                         <span className="index"> {index + 1}. </span>
                                         {item.id === activeCons ?
-                                            <input value={item.value} onChange={(e) => this.changeHandle(e, item.id)} onKeyPress={this.enterHandle}/>
+                                            <input value={item.value} onChange={(e) => this.changeHandle(e, item.id)} onKeyDown={(e) => this.enterHandle(e)}/>
                                             : <span> {item.value} </span>
                                         }
                                     </div>
