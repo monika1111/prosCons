@@ -41,7 +41,7 @@
 .data{
     height: 300px;
     max-height: 300px;
-    overflow-y: scroll;
+    overflow-y: auto;
 }
 .index{
     font-weight: bold;
