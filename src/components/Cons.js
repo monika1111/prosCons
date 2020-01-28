@@ -1,6 +1,6 @@
 import React, {Component} from 'react'
 import { connect } from 'react-redux'
-import {rootConstants} from "../reducers/rootReducer";
+import {updateActiveCons, updateCons} from "../reducers/rootActions";
 
 class Cons extends Component {
     constructor(props) {
@@ -52,10 +52,10 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps  = (dispatch) => {
     return {
         updateActiveCons: (id) => {
-            dispatch({type: rootConstants.UPDATE_ACTIVE_CONS, id: id})
+            dispatch(updateActiveCons(id))
         },
         updateCons: (id, value) => {
-            dispatch({type: rootConstants.UPDATE_CONS, payload: {id: id, value: value}})
+            dispatch(updateCons(id, value))
         }
     }
 };
