@@ -15,6 +15,10 @@ class Pros extends Component {
         this.props.updatePros(id, e.target.value);
     };
 
+    enterHandle = () => {
+        this.props.updateActivePros(null);
+    };
+
     render() {
         const {pros, activePros} = this.props;
         return(
@@ -27,8 +31,8 @@ class Pros extends Component {
                                 return (
                                     <div className="item" key={item.id} onClick={() => this.clickHandle(item.id)}>
                                         <span className="index"> {index + 1}. </span>
-                                        {item.id == activePros ?
-                                            <input value={item.value} onChange={(e) => this.changeHandle(e, item.id)}/>
+                                        {item.id === activePros ?
+                                            <input value={item.value} onChange={(e) => this.changeHandle(e, item.id)} onKeyPress={this.enterHandle} />
                                             : <span> {item.value} </span>
                                         }
                                     </div>
