@@ -15,6 +15,10 @@ class Cons extends Component {
         this.props.updateCons(id, e.target.value);
     };
 
+    enterHandle = () => {
+        this.props.updateActiveCons(null);
+    };
+
     render() {
         const {cons, activeCons} = this.props;
         return(
@@ -27,8 +31,8 @@ class Cons extends Component {
                                 return (
                                     <div className="item" key={item.id} onClick={() => this.clickHandle(item.id)}>
                                         <span className="index"> {index + 1}. </span>
-                                        {item.id == activeCons ?
-                                            <input value={item.value} onChange={(e) => this.changeHandle(e, item.id)}/>
+                                        {item.id === activeCons ?
+                                            <input value={item.value} onChange={(e) => this.changeHandle(e, item.id)} onKeyPress={this.enterHandle}/>
                                             : <span> {item.value} </span>
                                         }
                                     </div>

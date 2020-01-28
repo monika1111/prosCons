@@ -36,10 +36,10 @@ const updateConsOrPros = (state, {payload}, type) => {
     const data = JSON.parse(JSON.stringify(state[type]));
     data.some((item, index) => {
         if(item.id === payload.id){
-            if(payload.value == ''){
+            if(payload.value === ''){
                 data.splice(index, 1);
             } else{
-                if(data.length == index + 1) {
+                if(data.length === index + 1) {
                     data.push({id: payload.id + 1, value: ''});
                 }
                 Object.assign(item,{value: payload.value});
@@ -53,16 +53,18 @@ const updateConsOrPros = (state, {payload}, type) => {
 };
 
 const rootReducer = (state = initialState, action) => {
-    if (action.type === rootConstants.UPDATE_ACTIVE_PROS) {
-        return updateActivePros(state, action);
-    }else if (action.type === rootConstants.UPDATE_PROS) {
-        return updateConsOrPros(state, action, 'pros');
-    }else if (action.type === rootConstants.UPDATE_ACTIVE_CONS) {
-        return updateActiveCons(state, action);
-    }else if (action.type === rootConstants.UPDATE_CONS) {
-        return updateConsOrPros(state, action, 'cons');
-    }else {
-        return state
+    switch(action.type) {
+        case rootConstants.UPDATE_ACTIVE_PROS:
+            return updateActivePros(state, action);
+        case rootConstants.UPDATE_PROS:
+            return updateConsOrPros(state, action, 'pros');
+        case rootConstants.UPDATE_ACTIVE_CONS:
+            return updateActiveCons(state, action);
+        case rootConstants.UPDATE_CONS:
+            return updateConsOrPros(state, action, 'cons');
+        default:
+            return state
+
     }
 };
 
