@@ -1,7 +1,10 @@
-export const UPDATE_ACTIVE_PROS = 'UPDATE_ACTIVE_PROS';
-export const UPDATE_PROS = 'UPDATE_PROS';
-export const UPDATE_ACTIVE_CONS = 'UPDATE_ACTIVE_CONS';
-export const UPDATE_CONS = 'UPDATE_CONS';
+export const rootConstants = {
+    UPDATE_ACTIVE_PROS: 'UPDATE_ACTIVE_PROS',
+    UPDATE_PROS: 'UPDATE_PROS',
+    UPDATE_ACTIVE_CONS: 'UPDATE_ACTIVE_CONS',
+    UPDATE_CONS: 'UPDATE_CONS'
+};
+
 
 const initialState = {
     pros: [
@@ -50,13 +53,13 @@ const updateConsOrPros = (state, {payload}, type) => {
 };
 
 const rootReducer = (state = initialState, action) => {
-    if (action.type === UPDATE_ACTIVE_PROS) {
+    if (action.type === rootConstants.UPDATE_ACTIVE_PROS) {
         return updateActivePros(state, action);
-    }else if (action.type === UPDATE_PROS) {
+    }else if (action.type === rootConstants.UPDATE_PROS) {
         return updateConsOrPros(state, action, 'pros');
-    }else if (action.type === UPDATE_ACTIVE_CONS) {
+    }else if (action.type === rootConstants.UPDATE_ACTIVE_CONS) {
         return updateActiveCons(state, action);
-    }else if (action.type === UPDATE_CONS) {
+    }else if (action.type === rootConstants.UPDATE_CONS) {
         return updateConsOrPros(state, action, 'cons');
     }else {
         return state
